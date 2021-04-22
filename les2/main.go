@@ -1,19 +1,35 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func DuplicateEncode(word string) string {
-	strToRune := []rune(word)
-	count := 1
+	changeWordToLowerCase := strings.ToLower(word)
+	strToRune := []rune(changeWordToLowerCase)
+	result := ""
+	countRepetInRune := 0
 	for _, v := range strToRune {
-		if v 
+		for _, val := range strToRune {
+			if v == val {
+				countRepetInRune++
+			}
+		}
+		if countRepetInRune == 1 {
+			result += "("
+		} else {
+			result += ")"
+		}
+		countRepetInRune = 0
 	}
-	return string(strToRune)
+	return result
 }
 
 func main() {
-	str := "recede"
+	str := "Success"
 	fmt.Println(str)
+	fmt.Println(DuplicateEncode(str))
 }
 
 /*
